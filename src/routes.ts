@@ -13,7 +13,6 @@ import loginWithPhoneSchema, { phoneLoginOtpVerifySchema } from './dto/loginWith
 import refreshTokenSchema from './dto/refreshTokenSchema'
 import { locationSchema } from './dto/setLocationSchema'
 
-import { AccessController } from './controllers/AccessController'
 import { MiscController } from './controllers/MiscController'
 import { SignupController } from './controllers/SignupController'
 import { LocationsController } from './controllers/LocationsController'
@@ -61,47 +60,6 @@ const setupRouter = () => {
     }
   })
   //--End of Signup
-
-  //--Access
-  router.post('/' + Paths.ACCESS + '/login/phonenumber', async (req: Request, res: Response) => {
-    try {
-      validateAJoi(loginWithPhoneSchema, req.body)
-
-      const controller = new AccessController()
-      const responseData = await controller.loginWithPhone(req.body)
-
-      res.status(HttpStatus.OK).send(responseData)
-    } catch (e) {
-      return respondWithError(res, e)
-    }
-  })
-
-  router.post('/' + Paths.ACCESS + '/login/phonenumber/verify/otp', async (req: Request, res: Response) => {
-    try {
-      validateAJoi(phoneLoginOtpVerifySchema, req.body)
-
-      const controller = new AccessController()
-      const responseData = await controller.verifyPhoneForLogin(req.body)
-
-      res.status(HttpStatus.OK).send(responseData)
-    } catch (e) {
-      return respondWithError(res, e)
-    }
-  })
-
-  router.post('/' + Paths.ACCESS + '/refreshtoken', async (req: Request, res: Response) => {
-    try {
-      validateAJoi(refreshTokenSchema, req.body)
-
-      const controller = new AccessController()
-      const responseData = await controller.handleRefreshToken(req.body)
-
-      res.status(HttpStatus.OK).send(responseData)
-    } catch (e) {
-      return respondWithError(res, e)
-    }
-  })
-  //--End of Access
 
   //--Miscellaneous
   router.get('/' + Paths.MISCELLANEOUS + '/countries', async (req: Request, res: Response) => {
