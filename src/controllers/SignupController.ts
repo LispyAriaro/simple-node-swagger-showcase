@@ -38,7 +38,7 @@ export class SignupController {
       throw new BadRequestError('Selected country is invalid')
     }
 
-    const dataInResponse: ISimpleUserInfo = await processNewUserInfo(phoneNumber, countryLongName, Roles.NORMAL_USER)
+    const dataInResponse: ISimpleUserInfo = await processNewUserInfo(phoneNumber, countryLongName, foundCountry.code, Roles.NORMAL_USER)
 
     let resData: IServerResponse<ISimpleUserInfo> = {
       status: true,

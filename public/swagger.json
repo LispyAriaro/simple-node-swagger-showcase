@@ -214,6 +214,9 @@
 					},
 					"lastName": {
 						"type": "string"
+					},
+					"phoneVerificationOtp": {
+						"type": "string"
 					}
 				},
 				"type": "object",
