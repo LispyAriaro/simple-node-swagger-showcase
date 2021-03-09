@@ -1,0 +1,772 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"DetailedError": {
+				"properties": {
+					"message": {
+						"type": "string"
+					},
+					"standardizedErrorCode": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"message",
+					"standardizedErrorCode"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IServerResponse_string_": {
+				"properties": {
+					"status": {
+						"type": "boolean"
+					},
+					"message": {
+						"type": "string"
+					},
+					"data": {
+						"type": "string"
+					},
+					"error": {
+						"type": "string"
+					},
+					"errors": {
+						"items": {
+							"$ref": "#/components/schemas/DetailedError"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ILoginWithPhone": {
+				"properties": {
+					"phoneNumber": {
+						"type": "string"
+					},
+					"countryCode": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"phoneNumber",
+					"countryCode"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IAccessTokenData": {
+				"properties": {
+					"token": {
+						"type": "string"
+					},
+					"refreshToken": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"token",
+					"refreshToken"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IServerResponse_IAccessTokenData_": {
+				"properties": {
+					"status": {
+						"type": "boolean"
+					},
+					"message": {
+						"type": "string"
+					},
+					"data": {
+						"$ref": "#/components/schemas/IAccessTokenData"
+					},
+					"error": {
+						"type": "string"
+					},
+					"errors": {
+						"items": {
+							"$ref": "#/components/schemas/DetailedError"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ILoginWithPhoneOtpVerify": {
+				"properties": {
+					"phoneNumber": {
+						"type": "string"
+					},
+					"otp": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"phoneNumber",
+					"otp"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IRefreshToken": {
+				"properties": {
+					"refreshToken": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"refreshToken"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ILocationResponse": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"latitude": {
+						"type": "number",
+						"format": "double"
+					},
+					"longitude": {
+						"type": "number",
+						"format": "double"
+					},
+					"country": {
+						"type": "string"
+					},
+					"state": {
+						"type": "string"
+					},
+					"city": {
+						"type": "string"
+					},
+					"address": {
+						"type": "string"
+					},
+					"currentUser": {},
+					"uuid": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"latitude",
+					"longitude",
+					"country",
+					"state",
+					"city",
+					"address"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IServerResponse_Array_ILocationResponse__": {
+				"properties": {
+					"status": {
+						"type": "boolean"
+					},
+					"message": {
+						"type": "string"
+					},
+					"data": {
+						"items": {
+							"$ref": "#/components/schemas/ILocationResponse"
+						},
+						"type": "array"
+					},
+					"error": {
+						"type": "string"
+					},
+					"errors": {
+						"items": {
+							"$ref": "#/components/schemas/DetailedError"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IServerResponse_ILocationResponse_": {
+				"properties": {
+					"status": {
+						"type": "boolean"
+					},
+					"message": {
+						"type": "string"
+					},
+					"data": {
+						"$ref": "#/components/schemas/ILocationResponse"
+					},
+					"error": {
+						"type": "string"
+					},
+					"errors": {
+						"items": {
+							"$ref": "#/components/schemas/DetailedError"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ILocationRequest": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"latitude": {
+						"type": "number",
+						"format": "double"
+					},
+					"longitude": {
+						"type": "number",
+						"format": "double"
+					},
+					"country": {
+						"type": "string"
+					},
+					"state": {
+						"type": "string"
+					},
+					"city": {
+						"type": "string"
+					},
+					"address": {
+						"type": "string"
+					},
+					"currentUser": {}
+				},
+				"required": [
+					"latitude",
+					"longitude",
+					"country",
+					"state",
+					"city",
+					"address"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ICountry": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"code": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"name",
+					"code"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IServerResponse_Array_ICountry__": {
+				"properties": {
+					"status": {
+						"type": "boolean"
+					},
+					"message": {
+						"type": "string"
+					},
+					"data": {
+						"items": {
+							"$ref": "#/components/schemas/ICountry"
+						},
+						"type": "array"
+					},
+					"error": {
+						"type": "string"
+					},
+					"errors": {
+						"items": {
+							"$ref": "#/components/schemas/DetailedError"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ISimpleUserInfo": {
+				"properties": {
+					"uuid": {
+						"type": "string"
+					},
+					"firstName": {
+						"type": "string"
+					},
+					"lastName": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IServerResponse_ISimpleUserInfo_": {
+				"properties": {
+					"status": {
+						"type": "boolean"
+					},
+					"message": {
+						"type": "string"
+					},
+					"data": {
+						"$ref": "#/components/schemas/ISimpleUserInfo"
+					},
+					"error": {
+						"type": "string"
+					},
+					"errors": {
+						"items": {
+							"$ref": "#/components/schemas/DetailedError"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IUserSignupPhoneDetails": {
+				"properties": {
+					"phoneNumber": {
+						"type": "string"
+					},
+					"countryLongName": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"phoneNumber",
+					"countryLongName"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IPhoneNumberVerify": {
+				"properties": {
+					"userUuid": {
+						"type": "string"
+					},
+					"phoneNumber": {
+						"type": "string"
+					},
+					"otp": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"userUuid",
+					"phoneNumber",
+					"otp"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IServerResponse_void_": {
+				"properties": {
+					"status": {
+						"type": "boolean"
+					},
+					"message": {
+						"type": "string"
+					},
+					"data": {},
+					"error": {
+						"type": "string"
+					},
+					"errors": {
+						"items": {
+							"$ref": "#/components/schemas/DetailedError"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IUserSignupPersonalDetails": {
+				"properties": {
+					"firstName": {
+						"type": "string"
+					},
+					"lastName": {
+						"type": "string"
+					},
+					"currentUser": {}
+				},
+				"required": [
+					"firstName",
+					"lastName",
+					"currentUser"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {
+			"api_key": {
+				"type": "apiKey",
+				"name": "x-access-token",
+				"in": "header"
+			}
+		}
+	},
+	"info": {
+		"title": "simple-node-swagger-showcase",
+		"version": "1.0.0",
+		"description": "Simple Node Swagger Showcase",
+		"contact": {
+			"name": "Ariaroo Efe"
+		}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/api/access/login/phonenumber": {
+			"post": {
+				"operationId": "LoginWithPhone",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IServerResponse_string_"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Access"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ILoginWithPhone"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/access/login/phonenumber/verify/otp": {
+			"post": {
+				"operationId": "VerifyPhoneForLogin",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IServerResponse_IAccessTokenData_"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Access"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ILoginWithPhoneOtpVerify"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/access/refreshtoken": {
+			"post": {
+				"operationId": "HandleRefreshToken",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IServerResponse_IAccessTokenData_"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Access"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IRefreshToken"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/locations": {
+			"get": {
+				"operationId": "GetLocations",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IServerResponse_Array_ILocationResponse__"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Locations"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "header",
+						"name": "x-access-token",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"post": {
+				"operationId": "NewLocation",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IServerResponse_ILocationResponse_"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Locations"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "header",
+						"name": "x-access-token",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ILocationRequest"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/miscellaneous/countries": {
+			"get": {
+				"operationId": "GetCountriesList",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IServerResponse_Array_ICountry__"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Miscellaneous"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/api/signup/phonenumber": {
+			"post": {
+				"operationId": "ProcessNewPhoneNumber",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IServerResponse_ISimpleUserInfo_"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Signup"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IUserSignupPhoneDetails"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/signup/phonenumber/verify": {
+			"post": {
+				"operationId": "PhoneNumberVerify",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IServerResponse_IAccessTokenData_"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Signup"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IPhoneNumberVerify"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/signup/userPersonalInfo": {
+			"put": {
+				"operationId": "ProcessUserSignupInfo",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IServerResponse_void_"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Signup"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "header",
+						"name": "x-access-token",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IUserSignupPersonalDetails"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}
