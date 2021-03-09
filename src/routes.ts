@@ -9,7 +9,6 @@ import { validateAJoi } from './utils/core'
 
 import { userSignupPhoneSchema, userSignupPersonalDetailsSchema } from './dto/userSignupSchema'
 import phoneNumberVerifySchema from './dto/phoneNumberVerifySchema'
-import refreshTokenSchema from './dto/refreshTokenSchema'
 import { locationSchema } from './dto/setLocationSchema'
 
 import { MiscController } from './controllers/MiscController'
