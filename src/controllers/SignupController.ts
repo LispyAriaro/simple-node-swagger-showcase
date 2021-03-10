@@ -1,23 +1,19 @@
 import { Body, Header, Post, Put, Route, Security, Tags } from "tsoa";
-import PhoneNumber from 'awesome-phonenumber'
-import * as _ from 'underscore'
 import IServerResponse from "../interfaces/IServerResponse";
 import { IUserSignupPhoneDetails, IUserSignupPersonalDetails } from "../dto/userSignupSchema";
 import Countries from "../utils/countries";
-import { generateOtp } from "../utils/core";
 import { BadRequestError, ConflictError } from '../utils/error-response-types'
 import { User } from "../entity/User";
 import { processNewUserInfo } from "../services/userInfoSignupService";
 import ICountry from "../interfaces/ICountry";
 import ISimpleUserInfo from "../interfaces/ISimpleUserInfo";
-import { getRepository, In } from "typeorm";
+import { getRepository } from "typeorm";
 import { Roles } from "../enums/Roles";
 
 import { validate as uuidValidate } from 'uuid'
-import { ErrorMessages } from '../enums/ErrorMessages'
 import IAccessTokenData from '../interfaces/IAccessTokenData'
 import { IPhoneNumberVerify } from '../dto/phoneNumberVerifySchema'
-import { processPhoneVerification, sendPhoneVerificationOtp } from '../services/phoneVerificationService'
+import { processPhoneVerification } from '../services/phoneVerificationService'
 
 // DO NOT EXPORT DEFAULT
 
@@ -29,11 +25,7 @@ export class SignupController {
   public async processNewPhoneNumber(@Body() req: IUserSignupPhoneDetails): Promise<IServerResponse<ISimpleUserInfo>> {
     const { phoneNumber, countryLongName } = req
 
-    if(countryLongName !== 'Nigeria') {
-      throw new BadRequestError('Only Nigeria is supported for now')
-    }
-
-    const foundCountry: ICountry = _.find(Countries, countryItem => countryItem.name === countryLongName)
+    const foundCountry: ICountry = Countries.find(countryItem => countryItem.name === countryLongName)
     if(!foundCountry) {
       throw new BadRequestError('Selected country is invalid')
     }
@@ -80,7 +72,9 @@ export class SignupController {
 
   @Put('/userPersonalInfo')
   @Security("jwt")
-  public async processUserSignupInfo(@Body() req: IUserSignupPersonalDetails, @Header('x-access-token') accessToken?: string): Promise<IServerResponse<void>> {
+  public async processUserSignupInfo(
+      @Body() req: IUserSignupPersonalDetails, 
+      @Header('x-access-token') accessToken?: string): Promise<IServerResponse<void>> {
     const { firstName, lastName, currentUser } = req
 
     if(currentUser.firstName || currentUser.lastName) {

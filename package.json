@@ -4,8 +4,8 @@
   "description": "Simple Node Swagger Showcase",
   "private": true,
   "dependencies": {
-    "awesome-phonenumber": "2.46.0",
     "accesscontrol": "2.2.1",
+    "awesome-phonenumber": "2.46.0",
     "axios": "0.19.2",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "1.15.2",
@@ -22,7 +22,6 @@
     "tslog": "3.1.1",
     "tsoa": "3.5.2",
     "typeorm": "0.2.25",
-    "underscore": "1.12.0",
     "uuid": "8.3.2"
   },
   "devDependencies": {

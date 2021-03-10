@@ -1,5 +1,4 @@
 import { getRepository, getConnection } from 'typeorm'
-import * as _ from 'underscore'
 import jwt from 'jsonwebtoken'
 
 import { User } from '../entity/User'
@@ -12,9 +11,11 @@ import Rest from '../enums/Rest'
 
 
 export const getAccessToken = async (existingUser: User, newTokens?: boolean) : Promise<UserAccessToken> => {
-  let signableUser = _.pick(existingUser, [
-    'uuid', 'firstName', 'lastName'
-  ])
+  let signableUser = {
+    uuid: existingUser.uuid,
+    firstName: existingUser.firstName,
+    lastName: existingUser.lastName
+  }
 
   const generatedToken = jwt.sign(signableUser, process.env.JWT_SECRET, {
     expiresIn: Rest.JWT_TIMEOUT

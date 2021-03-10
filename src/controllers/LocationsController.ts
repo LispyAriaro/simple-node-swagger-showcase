@@ -1,7 +1,5 @@
 import IServerResponse from "../interfaces/IServerResponse";
 import { Get, Header, Request, Route, Tags, Security, Post, Body } from "tsoa";
-import * as _ from 'underscore'
-import { Roles } from "../enums/Roles";
 import { getRepository } from "typeorm";
 import { ILocationRequest, ILocationResponse } from "../dto/setLocationSchema";
 import { Location } from "../entity/Location";
@@ -15,15 +13,17 @@ export class LocationsController {
 
   @Get('')
   public async getLocations(@Request() req: any, @Header('x-access-token') accessToken?: string): Promise<IServerResponse<Array<ILocationResponse>>> {
-    const { currentUser } = req
-
-    const hasCommercialRole = _.find(currentUser.roles, role => role === Roles.COMMERCIAL)
-
     const locationRepo = getRepository(Location)
 
     const locations = await locationRepo.find({})
 
-    const formattedLocations = _.map(locations, loc => _.omit(loc, 'id', 'businessId', 'latLngGeog', 'createdAt', 'updatedAt'))
+    const formattedLocations = locations.map(location => {
+      return {
+        uuid: location.uuid,
+        name: location.name,
+        address: location.address,
+      }
+    })
 
     let resData: IServerResponse<Array<ILocationResponse>> = {
       status: true,
@@ -36,19 +36,19 @@ export class LocationsController {
   @Post('')
   public async newLocation(@Body() req: ILocationRequest, @Header('x-access-token') accessToken?: string): Promise<IServerResponse<ILocationResponse>> {
     const {
-      name, address, latitude, longitude, city, state, country, currentUser
+      name, address, currentUser
     } = req
-
-    const hasCommercialRole = _.find(currentUser.roles, role => role === Roles.COMMERCIAL)
 
     const locationRepo = getRepository(Location)
 
-    let location = new Location().initialize(name, address, latitude, longitude, city, state, country)
+    let location = new Location().initialize(name, address)
     location = await locationRepo.save(location)
 
-    const formattedLocation: ILocationResponse = _.omit(location, [
-      'id', 'createdAt', 'updatedAt'
-    ])
+    const formattedLocation: ILocationResponse = {
+      uuid: location.uuid,
+      name: location.name,
+      address: location.address,
+    }
 
     let resData: IServerResponse<ILocationResponse> = {
       status: true,

@@ -1,13 +1,7 @@
-import { Response } from 'express'
 import moment from 'moment'
-import * as _ from 'underscore'
-import validator from 'validator';
-import axios, { AxiosResponse } from 'axios'
 
-import Rest from '../enums/Rest'
 import { DetailedError, BadRequestError } from './error-response-types'
 import { STANDARDIZED_ERROR_CODE } from '../constants'
-import GeoLocationComponents from '../interfaces/GeoLocationComponents';
 
 
 export const validateAJoi = (joiSchema, object) => {
@@ -27,7 +21,7 @@ export const validateAJoi = (joiSchema, object) => {
   })
 
   if (validationResult) {
-    const detailedErrors = _.map(validationResult, validation => {
+    const detailedErrors = validationResult.map(validation => {
       return new DetailedError(validation.message, STANDARDIZED_ERROR_CODE.validation)
     })
     throw new BadRequestError(validationResult[0].message, detailedErrors)
@@ -57,17 +51,6 @@ export const generateOtp = (length: number) => {
     otp += digits[charIndex]
   }
   return otp
-}
-
-export const pickWithRoundRobin = (lastIndex: number, candidateIds: Array<any>) => {
-  if(lastIndex === -1) {
-    return candidateIds[0]
-  }
-  if(lastIndex === candidateIds.length - 1) {
-    return candidateIds[0]
-  } else {
-    return candidateIds[lastIndex + 1]
-  }
 }
 
 export const handleAxiosRequestError = (error) => {

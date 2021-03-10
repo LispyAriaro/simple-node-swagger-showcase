@@ -8,40 +8,18 @@
 		"schemas": {
 			"ILocationResponse": {
 				"properties": {
+					"uuid": {
+						"type": "string"
+					},
 					"name": {
-						"type": "string"
-					},
-					"latitude": {
-						"type": "number",
-						"format": "double"
-					},
-					"longitude": {
-						"type": "number",
-						"format": "double"
-					},
-					"country": {
-						"type": "string"
-					},
-					"state": {
-						"type": "string"
-					},
-					"city": {
 						"type": "string"
 					},
 					"address": {
 						"type": "string"
-					},
-					"currentUser": {},
-					"uuid": {
-						"type": "string"
 					}
 				},
 				"required": [
-					"latitude",
-					"longitude",
-					"country",
-					"state",
-					"city",
+					"name",
 					"address"
 				],
 				"type": "object",
@@ -125,34 +103,13 @@
 					"name": {
 						"type": "string"
 					},
-					"latitude": {
-						"type": "number",
-						"format": "double"
-					},
-					"longitude": {
-						"type": "number",
-						"format": "double"
-					},
-					"country": {
-						"type": "string"
-					},
-					"state": {
-						"type": "string"
-					},
-					"city": {
-						"type": "string"
-					},
 					"address": {
 						"type": "string"
 					},
 					"currentUser": {}
 				},
 				"required": [
-					"latitude",
-					"longitude",
-					"country",
-					"state",
-					"city",
+					"name",
 					"address"
 				],
 				"type": "object",

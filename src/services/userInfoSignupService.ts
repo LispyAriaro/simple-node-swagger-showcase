@@ -1,5 +1,4 @@
 import PhoneNumber from 'awesome-phonenumber'
-import * as _ from 'underscore'
 import { EntityManager, getConnection, getRepository } from 'typeorm'
 import { User } from '../entity/User'
 import { Roles } from '../enums/Roles'
