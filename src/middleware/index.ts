@@ -1,5 +1,4 @@
 import express from 'express'
-import helmet from 'helmet'
 
 import runBodyParseMiddleware from './bodyParser'
 import devEnvironmentVars from './devEnvConfig'
@@ -7,8 +6,6 @@ import setupSwagger from './swagger';
 
 
 const iniitializeMiddlewares = (app: express.Application) => {
-  app.use(helmet())
-
   devEnvironmentVars()
   
   runBodyParseMiddleware(app)
