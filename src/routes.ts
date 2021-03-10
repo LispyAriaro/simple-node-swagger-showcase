@@ -2,7 +2,6 @@ import express, { Router, Request, Response } from 'express'
 import HttpStatus from 'http-status-codes'
 
 import { verifyToken } from './auth/TokenVerifier'
-import { grantAccess } from './auth/roles'
 import { Paths } from './enums/Rest'
 import { respondWithError } from './utils/express'
 import { validateAJoi } from './utils/core'
