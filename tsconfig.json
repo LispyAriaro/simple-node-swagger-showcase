@@ -1,6 +1,6 @@
 {
   "include":[
-    "src/**/*", "tests", "tsoaSwaggerBuild"
+    "src/**/*"
   ],
   "exclude":[
     "./node_modules/*"
